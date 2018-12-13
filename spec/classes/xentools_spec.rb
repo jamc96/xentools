@@ -6,6 +6,11 @@ describe 'xentools' do
       let(:facts) { os_facts }
 
       it { is_expected.to compile }
+      it { is_expected.to compile.with_all_deps }
+
+      # ensure resources
+      it { is_expected.to contain_package('xe-guest-utilities').with(ensure: 'present') }
+      it { is_expected.to contain_package('xe-guest-utilities-xenstore').with(ensure: 'present') }
     end
   end
 end
